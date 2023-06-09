@@ -791,6 +791,19 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder * holder)
     sWorld.ModifyLoggedInCharsCount(_player->GetTeamId(), 1);
     sScriptDevMgr.OnPlayerLogin(pCurrChar);
 
+    //Start Solocraft Functions 單人單刷模式
+    bool SoloCraftEnable = sWorld.getConfig(CONFIG_BOOL_SOLOCRAFT_ENABLED);
+    bool SoloCraftAnnounceModule = sWorld.getConfig(CONFIG_BOOL_SOLOCRAFT_ANNOUNCE);
+
+    if (SoloCraftEnable)
+    {
+        if (SoloCraftAnnounceModule)
+        {
+            ChatHandler(pCurrChar->GetSession()).SendSysMessage("This server is running |cff4CFF00SoloCraft Custom |rmodule.");
+        }
+    }
+    //End Solocraft Functions
+
     delete holder;
 }
 

@@ -446,6 +446,8 @@ Player::Player (WorldSession *session): Unit(), m_reputationMgr(this), m_camera(
 
     m_spellPenetrationItemMod = 0;
 
+    m_baseSpellPower = 0; //SOLOCRAFT MOD
+
     // Honor System
     m_lastHonorUpdateTime = time(NULL);
 
@@ -2812,6 +2814,8 @@ void Player::InitStatsForLevel(bool reapplyMods)
         SetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS+i, 0);
         SetFloatValue(PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+i, 1.00f);
     }
+
+    SetUInt32Value(GetBaseSpellPowerBonus(), 0); //SOLOCRAFT MOD
 
     //reset attack power, damage and attack speed fields
     SetFloatValue(UNIT_FIELD_BASEATTACKTIME, 2000.0f);

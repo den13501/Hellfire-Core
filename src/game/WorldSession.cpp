@@ -690,6 +690,9 @@ void WorldSession::LogoutPlayer(bool Save)
         sSocialMgr.SendFriendStatus(_player, FRIEND_OFFLINE, _player->GetGUIDLow(), true);
         sSocialMgr.RemovePlayerSocial(_player->GetGUIDLow ());
 
+        //Start Solocraft Function
+        RealmDataDatabase.PExecute("DELETE FROM custom_solocraft_character_stats WHERE GUID = %u", _player->GetGUIDLow());
+        //End Solocraft Function
 
         ///- Delete the player object
         _player->CleanupsBeforeDelete();
