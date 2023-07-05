@@ -2663,6 +2663,8 @@ void Player::GiveLevel(uint32 level)
     if (level == GetLevel())
         return;
 
+    sScriptDevMgr.OnPlayerLevelChanged(this->ToPlayer(), GetLevel(), level);
+
     PlayerLevelInfo info;
     sObjectMgr.GetPlayerLevelInfo(GetRace(),GetClass(),level,&info);
 
